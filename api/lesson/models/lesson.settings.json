@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "lessons",
+  "info": {
+    "name": "Lesson"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "url": {
+      "type": "uid"
+    },
+    "Description": {
+      "type": "richtext"
+    },
+    "isCompleted": {
+      "type": "boolean"
+    },
+    "exercises": {
+      "via": "lesson",
+      "collection": "exercise"
+    },
+    "materials": {
+      "via": "lesson",
+      "collection": "materials"
+    },
+    "isPublished": {
+      "type": "boolean"
+    },
+    "Video": {
+      "type": "string"
+    }
+  }
+}

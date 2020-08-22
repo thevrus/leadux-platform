@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "exercises",
+  "info": {
+    "name": "Exercise"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "Materials": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "Number": {
+      "type": "biginteger"
+    },
+    "Description": {
+      "type": "richtext"
+    },
+    "isCompleted": {
+      "type": "boolean"
+    },
+    "lesson": {
+      "model": "lesson",
+      "via": "exercises"
+    },
+    "Title": {
+      "type": "string"
+    }
+  }
+}
