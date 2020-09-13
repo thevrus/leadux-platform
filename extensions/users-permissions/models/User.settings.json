@@ -53,9 +53,19 @@
       "plugin": "users-permissions",
       "configurable": false
     },
-    "PaymentService": {
+    "paymentService": {
       "type": "string",
-      "default": "null"
+      "default": "null",
+      "private": true
+    },
+    "orderID": {
+      "type": "string",
+      "private": true,
+      "unique": true
+    },
+    "transactionID": {
+      "type": "string",
+      "private": true
     }
   }
 }

@@ -2,38 +2,52 @@
   "kind": "collectionType",
   "collectionName": "lessons",
   "info": {
-    "name": "Lesson"
+    "name": "lesson"
   },
   "options": {
     "increments": true,
     "timestamps": true
   },
   "attributes": {
-    "Title": {
+    "title": {
       "type": "string"
     },
-    "url": {
-      "type": "uid"
-    },
-    "Description": {
+    "description": {
       "type": "richtext"
     },
-    "isCompleted": {
+    "published": {
       "type": "boolean"
+    },
+    "video": {
+      "type": "string"
+    },
+    "number": {
+      "type": "integer"
+    },
+    "cover": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
     },
     "exercises": {
-      "via": "lesson",
-      "collection": "exercise"
+      "collection": "exercise",
+      "via": "lesson"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
     },
     "materials": {
-      "via": "lesson",
-      "collection": "materials"
+      "collection": "material",
+      "via": "lesson"
     },
-    "isPublished": {
-      "type": "boolean"
-    },
-    "Video": {
-      "type": "string"
+    "private": {
+      "type": "boolean",
+      "default": true
     }
   }
 }

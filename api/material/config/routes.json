@@ -3,7 +3,7 @@
     {
       "method": "GET",
       "path": "/materials",
-      "handler": "materials.find",
+      "handler": "material.find",
       "config": {
         "policies": []
       }
@@ -11,7 +11,7 @@
     {
       "method": "GET",
       "path": "/materials/count",
-      "handler": "materials.count",
+      "handler": "material.count",
       "config": {
         "policies": []
       }
@@ -19,7 +19,7 @@
     {
       "method": "GET",
       "path": "/materials/:id",
-      "handler": "materials.findOne",
+      "handler": "material.findOne",
       "config": {
         "policies": []
       }
@@ -27,7 +27,7 @@
     {
       "method": "POST",
       "path": "/materials",
-      "handler": "materials.create",
+      "handler": "material.create",
       "config": {
         "policies": []
       }
@@ -35,7 +35,7 @@
     {
       "method": "PUT",
       "path": "/materials/:id",
-      "handler": "materials.update",
+      "handler": "material.update",
       "config": {
         "policies": []
       }
@@ -43,7 +43,7 @@
     {
       "method": "DELETE",
       "path": "/materials/:id",
-      "handler": "materials.delete",
+      "handler": "material.delete",
       "config": {
         "policies": []
       }

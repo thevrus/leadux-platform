@@ -2,24 +2,23 @@
   "kind": "collectionType",
   "collectionName": "materials",
   "info": {
-    "name": "Materials"
+    "name": "material"
   },
   "options": {
     "increments": true,
     "timestamps": true
   },
   "attributes": {
-    "Title": {
+    "title": {
       "type": "string"
     },
-    "Description": {
+    "number": {
+      "type": "integer"
+    },
+    "description": {
       "type": "richtext"
     },
-    "lesson": {
-      "model": "lesson",
-      "via": "materials"
-    },
-    "Media": {
+    "media": {
       "collection": "file",
       "via": "related",
       "allowedTypes": [
@@ -30,11 +29,15 @@
       "plugin": "upload",
       "required": false
     },
-    "Link": {
-      "type": "string"
-    },
-    "isPublished": {
+    "published": {
       "type": "boolean"
+    },
+    "lesson": {
+      "via": "materials",
+      "model": "lesson"
+    },
+    "link": {
+      "type": "string"
     }
   }
 }
