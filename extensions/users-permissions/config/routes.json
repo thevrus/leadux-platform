@@ -1,0 +1,12 @@
+{
+    "routes": [
+        {
+            "method": "PUT",
+            "path": "/setstudent",
+            "handler": "UsersPermissions.setStudent",
+            "config": {
+                "policies": []
+            }
+        }
+    ]
+}

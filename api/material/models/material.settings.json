@@ -29,12 +29,9 @@
       "plugin": "upload",
       "required": false
     },
-    "published": {
-      "type": "boolean"
-    },
     "lesson": {
-      "via": "materials",
-      "model": "lesson"
+      "model": "lesson",
+      "via": "materials"
     },
     "link": {
       "type": "string"

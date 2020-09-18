@@ -56,16 +56,15 @@
     "paymentService": {
       "type": "string",
       "default": "null",
-      "private": true
+      "private": false
     },
     "orderID": {
       "type": "string",
-      "private": true,
+      "private": false,
       "unique": true
     },
     "transactionID": {
-      "type": "string",
-      "private": true
+      "type": "string"
     }
   }
 }

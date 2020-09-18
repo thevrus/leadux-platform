@@ -34,20 +34,27 @@
       "required": false
     },
     "exercises": {
-      "collection": "exercise",
-      "via": "lesson"
+      "via": "lesson",
+      "collection": "exercise"
     },
     "slug": {
       "type": "uid",
       "targetField": "title"
     },
     "materials": {
-      "collection": "material",
-      "via": "lesson"
+      "via": "lesson",
+      "collection": "material"
     },
     "private": {
       "type": "boolean",
       "default": true
+    },
+    "playlists": {
+      "collection": "playlist",
+      "via": "lessons"
+    },
+    "videoLength": {
+      "type": "integer"
     }
   }
 }
