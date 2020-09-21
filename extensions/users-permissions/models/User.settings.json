@@ -55,7 +55,6 @@
     },
     "paymentService": {
       "type": "string",
-      "default": "null",
       "private": false
     },
     "orderID": {

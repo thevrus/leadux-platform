@@ -12,38 +12,26 @@
     "title": {
       "type": "string"
     },
-    "description": {
-      "type": "richtext"
-    },
     "published": {
       "type": "boolean"
     },
-    "video": {
+    "videoId": {
       "type": "string"
     },
     "number": {
       "type": "integer"
     },
-    "cover": {
-      "collection": "file",
-      "via": "related",
-      "allowedTypes": [
-        "images"
-      ],
-      "plugin": "upload",
-      "required": false
-    },
     "exercises": {
-      "via": "lesson",
-      "collection": "exercise"
+      "collection": "exercise",
+      "via": "lesson"
     },
     "slug": {
       "type": "uid",
       "targetField": "title"
     },
     "materials": {
-      "via": "lesson",
-      "collection": "material"
+      "collection": "material",
+      "via": "lesson"
     },
     "private": {
       "type": "boolean",

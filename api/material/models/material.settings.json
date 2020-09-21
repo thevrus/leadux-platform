@@ -30,8 +30,8 @@
       "required": false
     },
     "lesson": {
-      "model": "lesson",
-      "via": "materials"
+      "via": "materials",
+      "model": "lesson"
     },
     "link": {
       "type": "string"
