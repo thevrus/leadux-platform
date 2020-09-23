@@ -1,12 +1,12 @@
 'use strict'
 
-const { sanitizeEntity } = require('strapi-utils')
+const { sanitizeEntity, parseMultipartData } = require('strapi-utils')
 
 module.exports = {
 	async find(ctx) {
-		const userRole = ctx.state.user ? ctx.state.user.role.type : 'new'
+		const role = ctx.state.user && ctx.state.user.role.type
 
-		let entities
+		let entities = []
 
 		const filters = ctx.query
 
@@ -18,51 +18,59 @@ module.exports = {
 			entities = await strapi.services.lesson.find(filters)
 		}
 
-		return entities.reduce((result, entity) => {
-			let lesson = sanitizeEntity(entity, {
+		const sanitizeContent = content => {
+			const sanitizedEntity = sanitizeEntity(content, {
 				model: strapi.models.lesson,
 			})
 
-			if (!entity.private) result.push(lesson)
-
-			if (entity.private && userRole === 'student') {
-				result.push(lesson)
+			if (
+				role !== 'student' &&
+				role !== 'advanced' &&
+				sanitizedEntity.private
+			) {
+				delete sanitizedEntity.videoId
+				delete sanitizedEntity.videoLength
 			}
 
-			result = result.map(less => {
-				// Delete updated_by, created_by props
+			if (sanitizedEntity.exercises) {
+				sanitizedEntity.exercises = sanitizedEntity.exercises.filter(
+					item => item.published
+				)
+			}
 
-				delete less.updated_by
-				delete less.created_by
+			if (sanitizedEntity.materials) {
+				sanitizedEntity.materials = sanitizedEntity.materials.filter(
+					item => item.published
+				)
+			}
 
-				// Delete private exercises
-				if (less.exercises) {
-					less.exercises = less.exercises.map(exercise => {
-						if (exercise.published) {
-							delete exercise.updated_by
-							delete exercise.created_by
+			return sanitizedEntity
+		}
 
-							return exercise
-						}
-					})
-				}
+		return entities.map(entity => sanitizeContent(entity))
+	},
+	async comment(ctx) {
+		const user = ctx.state.user
 
-				// Delete private materials
-				if (less.materials) {
-					less.materials = less.materials.map(material => {
-						if (material.published) {
-							delete material.updated_by
-							delete material.created_by
+		if (!user) {
+			return ctx.badRequest(null, [
+				{ messages: [{ id: 'You have to sign in first to comment.' }] },
+			])
+		}
 
-							return material
-						}
-					})
-				}
+		let entity
 
-				return less
-			})
+		// @TODO
+		// * Support images/files
+		if (ctx.is('multipart')) {
+			const { data, files } = parseMultipartData(ctx)
+			entity = await strapi.services.comment.create(data, { files })
+		} else {
+			ctx.request.body.user = user
+			ctx.request.body.lesson = ctx.params.id
+			entity = await strapi.services.comment.create(ctx.request.body)
+		}
 
-			return result
-		}, [])
+		return sanitizeEntity(entity, { model: strapi.models.comment })
 	},
 }

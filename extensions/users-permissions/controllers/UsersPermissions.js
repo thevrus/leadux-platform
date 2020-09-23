@@ -16,8 +16,6 @@ module.exports = {
 	async setStudent(ctx) {
 		const { user } = ctx.state
 
-		console.log(ctx.body)
-
 		if (!user) {
 			return ctx.badRequest(null, [
 				{ messages: [{ id: 'No authorization header was found' }] },

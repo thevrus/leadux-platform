@@ -64,6 +64,10 @@
     },
     "transactionID": {
       "type": "string"
+    },
+    "comments": {
+      "via": "user",
+      "collection": "comment"
     }
   }
 }
