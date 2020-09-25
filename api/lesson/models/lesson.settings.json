@@ -18,20 +18,20 @@
     "videoId": {
       "type": "string"
     },
-    "number": {
+    "order": {
       "type": "integer"
     },
     "exercises": {
-      "via": "lesson",
-      "collection": "exercise"
+      "collection": "exercise",
+      "via": "lesson"
     },
     "slug": {
       "type": "uid",
       "targetField": "title"
     },
     "materials": {
-      "via": "lesson",
-      "collection": "material"
+      "collection": "material",
+      "via": "lesson"
     },
     "private": {
       "type": "boolean",
@@ -45,8 +45,8 @@
       "type": "integer"
     },
     "comments": {
-      "via": "lesson",
-      "collection": "comment"
+      "collection": "comment",
+      "via": "lesson"
     }
   }
 }

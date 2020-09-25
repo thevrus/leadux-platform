@@ -16,6 +16,9 @@
       "via": "playlists",
       "collection": "lesson",
       "dominant": true
+    },
+    "order": {
+      "type": "integer"
     }
   }
 }

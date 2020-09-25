@@ -1,8 +1,26 @@
-'use strict';
+const { sanitizeEntity } = require('strapi-utils')
+const { sanitizeLesson } = require('../../../helpers/helpers')
 
-/**
- * Read the documentation (https://strapi.io/documentation/v3.x/concepts/controllers.html#core-controllers)
- * to customize this controller
- */
+module.exports = {
+	async find(ctx) {
+		let entities
 
-module.exports = {};
+		if (ctx.query._q) {
+			entities = await strapi.services.playlist.search(ctx.query)
+		} else {
+			entities = await strapi.services.playlist.find(ctx.query)
+		}
+
+		return entities.map(entity => {
+			const sanitizedEntity = sanitizeEntity(entity, {
+				model: strapi.models.playlist,
+			})
+
+			sanitizedEntity.lessons = sanitizedEntity.lessons.map(entity =>
+				sanitizeLesson(entity, ctx)
+			)
+
+			return sanitizedEntity
+		})
+	},
+}

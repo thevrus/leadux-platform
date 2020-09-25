@@ -1,12 +1,11 @@
 'use strict'
 
 const { sanitizeEntity, parseMultipartData } = require('strapi-utils')
+const { sanitizeLesson } = require('../../../helpers/helpers')
 
 module.exports = {
 	async find(ctx) {
-		const role = ctx.state.user && ctx.state.user.role.type
-
-		let entities = []
+		let entities
 
 		const filters = ctx.query
 
@@ -18,36 +17,7 @@ module.exports = {
 			entities = await strapi.services.lesson.find(filters)
 		}
 
-		const sanitizeContent = content => {
-			const sanitizedEntity = sanitizeEntity(content, {
-				model: strapi.models.lesson,
-			})
-
-			if (
-				role !== 'student' &&
-				role !== 'advanced' &&
-				sanitizedEntity.private
-			) {
-				delete sanitizedEntity.videoId
-				delete sanitizedEntity.videoLength
-			}
-
-			if (sanitizedEntity.exercises) {
-				sanitizedEntity.exercises = sanitizedEntity.exercises.filter(
-					item => item.published
-				)
-			}
-
-			if (sanitizedEntity.materials) {
-				sanitizedEntity.materials = sanitizedEntity.materials.filter(
-					item => item.published
-				)
-			}
-
-			return sanitizedEntity
-		}
-
-		return entities.map(entity => sanitizeContent(entity))
+		return entities.map(entity => sanitizeLesson(entity, ctx))
 	},
 	async comment(ctx) {
 		const user = ctx.state.user
@@ -60,7 +30,7 @@ module.exports = {
 
 		let entity
 
-		// @TODO
+		// TODO
 		// * Support images/files
 		if (ctx.is('multipart')) {
 			const { data, files } = parseMultipartData(ctx)
