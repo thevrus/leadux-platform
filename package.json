@@ -1,5 +1,5 @@
 {
-  "name": "rockux-platform",
+  "name": "leadux-platform",
   "private": true,
   "version": "0.1.0",
   "description": "",
@@ -11,18 +11,18 @@
   },
   "devDependencies": {},
   "dependencies": {
-    "strapi": "^3.1.5",
-    "strapi-admin": "^3.1.5",
-    "strapi-connector-mongoose": "^3.1.5",
-    "strapi-plugin-content-manager": "^3.1.5",
-    "strapi-plugin-content-type-builder": "^3.1.5",
-    "strapi-plugin-email": "^3.1.5",
-    "strapi-plugin-upload": "^3.1.5",
-    "strapi-plugin-users-permissions": "^3.1.5",
-    "strapi-utils": "^3.1.5",
-    "strapi-connector-bookshelf": "3.1.5",
     "knex": "<0.20.0",
-    "sqlite3": "latest"
+    "sqlite3": "latest",
+    "strapi": "^3.1.6",
+    "strapi-admin": "^3.1.6",
+    "strapi-connector-bookshelf": "^3.1.6",
+    "strapi-connector-mongoose": "^3.1.6",
+    "strapi-plugin-content-manager": "^3.1.6",
+    "strapi-plugin-content-type-builder": "^3.1.6",
+    "strapi-plugin-email": "^3.1.6",
+    "strapi-plugin-upload": "^3.1.6",
+    "strapi-plugin-users-permissions": "^3.1.6",
+    "strapi-utils": "^3.1.6"
   },
   "strapi": {},
   "engines": {
