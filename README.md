@@ -1,14 +1,14 @@
-# RockUX
+# LeadUX
 
 ## Development server
 
-- [rockux-platform-dev.herokuapp.com](https://rockux-platform-dev.herokuapp.com/) – API
-- [rockux-platform-dev.herokuapp.com/admin](https://rockux-platform-dev.herokuapp.com/admin) – Admin
+- [leadux-platform-dev.herokuapp.com](https://leadux-platform-dev.herokuapp.com/) – API
+- [leadux-platform-dev.herokuapp.com/admin](https://leadux-platform-dev.herokuapp.com/admin) – Admin
 
 ## Production server
 
-- [rockux-platform.herokuapp.com](https://rockux-platform.herokuapp.com/) – API
-- [rockux-platform.herokuapp.com/admin](https://rockux-platform.herokuapp.com/admin) – Admin
+- [leadux-platform.herokuapp.com](https://leadux-platform.herokuapp.com/) – API
+- [leadux-platform.herokuapp.com/admin](https://leadux-platform.herokuapp.com/admin) – Admin
 
 ---
 
