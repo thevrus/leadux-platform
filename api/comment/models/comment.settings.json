@@ -13,9 +13,9 @@
       "type": "text"
     },
     "user": {
+      "via": "comments",
       "plugin": "users-permissions",
-      "model": "user",
-      "via": "comments"
+      "model": "user"
     },
     "lesson": {
       "via": "comments",

@@ -78,7 +78,6 @@ $RECYCLE.BIN/
 
 *#
 ssl
-.idea
 nbproject
 public/uploads/*
 !public/uploads/.gitkeep
@@ -114,7 +113,14 @@ exports
 build
 
 ############################
-# Visual Studio Code
+# Editor directories and files
 ############################
 
+.idea
 .vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+

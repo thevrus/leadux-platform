@@ -53,21 +53,42 @@
       "plugin": "users-permissions",
       "configurable": false
     },
-    "paymentService": {
+    "order_id": {
       "type": "string",
-      "private": false
+      "private": true,
+      "unique": false
     },
-    "orderID": {
+    "transaction_id": {
       "type": "string",
-      "private": false,
-      "unique": true
-    },
-    "transactionID": {
-      "type": "string"
+      "private": true
     },
     "comments": {
-      "via": "user",
-      "collection": "comment"
+      "collection": "comment",
+      "via": "user"
+    },
+    "payment_id": {
+      "type": "string",
+      "private": true
+    },
+    "liqpay_order_id": {
+      "type": "string",
+      "private": true
+    },
+    "sender_card_country": {
+      "type": "string",
+      "private": true
+    },
+    "currency": {
+      "type": "string",
+      "private": true
+    },
+    "description": {
+      "type": "string",
+      "private": true
+    },
+    "amount": {
+      "type": "string",
+      "private": true
     }
   }
 }
