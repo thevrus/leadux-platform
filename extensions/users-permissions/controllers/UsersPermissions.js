@@ -65,7 +65,7 @@ module.exports = {
 
 		// TODO
 		// * Send confirmational email
-		ctx.redirect('http://localhost:8080/watch')
+		ctx.redirect(`${ctx.request.header.referer}watch`)
 	},
 
 	async getInvoice(ctx) {
