@@ -2,16 +2,9 @@
 
 let crypto = require('crypto')
 
-const devConnection = env =>
-	`http://${env('HOST', '0.0.0.0')}:${env.int('PORT', 1337)}`
-
-const prodConnection = env => env('HOST_URL')
-
 module.exports = ({ env }) => ({
-	host_url:
-		env('MODE') === 'development'
-			? devConnection(env)
-			: prodConnection(env),
+	host_url: env('HOST_URL'),
+	client_url: env('CLIENT_URL'),
 	public_key: env('LP_PUBLIC_KEY'),
 
 	data_signature: function (params) {

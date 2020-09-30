@@ -65,7 +65,7 @@ module.exports = {
 
 		// TODO
 		// * Send confirmational email
-		ctx.redirect(`${ctx.request.header.referer}watch`)
+		ctx.redirect(`${liqpay.client_url}watch`)
 	},
 
 	async getInvoice(ctx) {
@@ -79,12 +79,12 @@ module.exports = {
 
 		// TODO
 		// * Pass environment variable
-		const result_url = `${liqpay.host_url}/users-permissions/setstudent?id=${user.id}`
+		const result_url = `${liqpay.host_url}users-permissions/setstudent?id=${user.id}`
 
 		// TODO
 		// * Prepare individual invoices
 		// * Check if user has other plans
-		// const { status, country, countryCode, currency } = ctx.request.body
+		// const { country_name, country_code } = ctx.request.body
 		// console.log(ctx.request.body)
 
 		const payment = {
@@ -96,6 +96,8 @@ module.exports = {
 			result_url,
 			version: '3',
 		}
+
+		console.log(payment)
 
 		const { data, signature } = liqpay.data_signature(payment)
 
