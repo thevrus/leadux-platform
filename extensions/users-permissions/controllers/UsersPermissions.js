@@ -32,20 +32,24 @@ module.exports = {
 			transaction_id,
 		} = JSON.parse(liqpay.decode_base64(ctx.request.body.data))
 
-		console.log(JSON.parse(liqpay.decode_base64(ctx.request.body.data)))
-
 		if (status !== 'success') {
 			return ctx.badRequest(null, [
 				{ messages: [{ id: 'Something went wrong' }] },
 			])
 		}
 
+		const plan = await strapi.services.plan.find({
+			id: ctx.request.query.plan,
+		})
+
+		// type
 		const role = await strapi
 			.query('role', 'users-permissions')
-			.findOne({ type: 'student' }, [])
+			.findOne({ type: plan[0].role.type }, [])
 
+		// Set new role
 		strapi.query('user', 'users-permissions').update(
-			{ id: ctx.request.query.id },
+			{ id: ctx.request.query.user },
 			{
 				role,
 				currency,
@@ -56,11 +60,12 @@ module.exports = {
 				payment_id,
 				liqpay_order_id,
 				transaction_id,
+				plan: ctx.request.query.plan,
 			}
 		)
 
 		await strapi.plugins['users-permissions'].services.user.fetch({
-			id: ctx.request.query.id,
+			id: ctx.request.query.user,
 		})
 
 		// TODO
@@ -73,39 +78,58 @@ module.exports = {
 
 		if (!user) {
 			return ctx.badRequest(null, [
-				{ messages: [{ id: 'No authorization header was found' }] },
+				{ messages: [{ id: 'You have first sign in to buy plans.' }] },
 			])
 		}
 
-		// TODO
-		// * Pass environment variable
-		const result_url = `${liqpay.host_url}users-permissions/setstudent?id=${user.id}`
+		const { country_name } = ctx.request.body
 
-		// TODO
-		// * Prepare individual invoices
-		// * Check if user has other plans
-		// const { country_name, country_code } = ctx.request.body
-		// console.log(ctx.request.body)
+		const allPlans = await strapi.services.plan.find({})
 
-		const payment = {
-			action: 'pay',
-			amount: '1',
-			currency: 'UAH',
-			public_key: liqpay.public_key,
-			description: 'Курс Figma',
-			result_url,
-			version: '3',
-		}
+		ctx.body = allPlans.map(plan => {
+			if (user.plan !== plan.id) {
+				const result_url = `${liqpay.host_url}users-permissions/setstudent?user=${user.id}&plan=${plan.id}`
 
-		console.log(payment)
+				let amount = null
+				let currency = null
 
-		const { data, signature } = liqpay.data_signature(payment)
+				switch (country_name) {
+					case 'RUSSIA':
+						amount = plan.rub
+						currency = 'RUB'
+						break
 
-		ctx.body = {
-			currency: payment.currency,
-			amount: payment.amount,
-			data,
-			signature,
-		}
+					case 'UKRAINE':
+						amount = plan.uah
+						currency = 'UAH'
+						break
+
+					default:
+						amount = plan.usd
+						currency = 'USD'
+				}
+
+				const payment = {
+					action: 'pay',
+					amount,
+					currency,
+					public_key: liqpay.public_key,
+					description: plan.description,
+					result_url,
+					version: '3',
+				}
+
+				const { data, signature } = liqpay.data_signature(payment)
+
+				return {
+					name: plan.name,
+					description: plan.description,
+					currency,
+					amount,
+					data,
+					signature,
+				}
+			}
+		})
 	},
 }

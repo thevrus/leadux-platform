@@ -89,6 +89,18 @@
     "amount": {
       "type": "string",
       "private": true
+    },
+    "avatar": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "plan": {
+      "model": "plan"
     }
   }
 }
