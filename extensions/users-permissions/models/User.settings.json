@@ -53,42 +53,9 @@
       "plugin": "users-permissions",
       "configurable": false
     },
-    "order_id": {
-      "type": "string",
-      "private": true,
-      "unique": false
-    },
-    "transaction_id": {
-      "type": "string",
-      "private": true
-    },
     "comments": {
       "collection": "comment",
       "via": "user"
-    },
-    "payment_id": {
-      "type": "string",
-      "private": true
-    },
-    "liqpay_order_id": {
-      "type": "string",
-      "private": true
-    },
-    "sender_card_country": {
-      "type": "string",
-      "private": true
-    },
-    "currency": {
-      "type": "string",
-      "private": true
-    },
-    "description": {
-      "type": "string",
-      "private": true
-    },
-    "amount": {
-      "type": "string",
-      "private": true
     },
     "avatar": {
       "model": "file",
@@ -101,6 +68,10 @@
     },
     "plan": {
       "model": "plan"
+    },
+    "payments": {
+      "via": "user",
+      "collection": "payment"
     }
   }
 }

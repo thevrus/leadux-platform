@@ -35,9 +35,8 @@
       "plugin": "users-permissions"
     },
     "plan": {
-      "unique": true,
-      "model": "plan",
-      "via": "role"
+      "via": "role",
+      "model": "plan"
     }
   }
 }

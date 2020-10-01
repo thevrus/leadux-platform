@@ -10,24 +10,32 @@
   },
   "attributes": {
     "name": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "description": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "usd": {
-      "type": "decimal"
+      "type": "decimal",
+      "required": true,
+      "default": 0
     },
     "uah": {
-      "type": "decimal"
+      "type": "decimal",
+      "required": true,
+      "default": 0
     },
     "rub": {
-      "type": "decimal"
+      "type": "decimal",
+      "default": 0,
+      "required": true
     },
     "role": {
-      "via": "plan",
       "plugin": "users-permissions",
-      "model": "role"
+      "model": "role",
+      "via": "plan"
     }
   }
 }

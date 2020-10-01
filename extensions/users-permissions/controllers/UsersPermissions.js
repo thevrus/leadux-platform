@@ -1,5 +1,4 @@
 'use strict'
-const { sanitizeEntity } = require('strapi-utils')
 
 const liqpay = strapi.config.liqpay
 
@@ -38,29 +37,38 @@ module.exports = {
 			])
 		}
 
-		const plan = await strapi.services.plan.find({
+		const user = await strapi
+			.query('user', 'users-permissions')
+			.findOne({ id: ctx.request.query.user })
+
+		const payment = await strapi.services.payment.create({
+			currency,
+			description,
+			order_id,
+			liqpay_order_id,
+			user,
+			amount: amount.toString(),
+			sender_card_country: sender_card_country.toString(),
+			payment_id: payment_id.toString(),
+			transaction_id: transaction_id.toString(),
+		})
+
+		const plan = await strapi.query('plan').findOne({
 			id: ctx.request.query.plan,
 		})
 
 		// type
 		const role = await strapi
 			.query('role', 'users-permissions')
-			.findOne({ type: plan[0].role.type }, [])
+			.findOne({ type: plan.role.type }, [])
 
 		// Set new role
 		strapi.query('user', 'users-permissions').update(
 			{ id: ctx.request.query.user },
 			{
 				role,
-				currency,
-				amount,
-				description,
-				sender_card_country,
-				order_id,
-				payment_id,
-				liqpay_order_id,
-				transaction_id,
 				plan: ctx.request.query.plan,
+				payment,
 			}
 		)
 
@@ -85,6 +93,7 @@ module.exports = {
 		const { country_name } = ctx.request.body
 
 		const allPlans = await strapi.services.plan.find({})
+		// const userPlan = await strapi.query('plan').findOne({ id: user.plan })
 
 		ctx.body = allPlans.map(plan => {
 			if (user.plan !== plan.id) {
