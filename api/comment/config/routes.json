@@ -47,6 +47,14 @@
       "config": {
         "policies": []
       }
+    },
+    {
+      "method": "POST",
+      "path": "/comments/:id",
+      "handler": "comment.comment",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }

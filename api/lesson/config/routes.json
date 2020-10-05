@@ -47,14 +47,6 @@
       "config": {
         "policies": []
       }
-    },
-    {
-      "method": "POST",
-      "path": "/lessons/:id/comment",
-      "handler": "lesson.comment",
-      "config": {
-        "policies": []
-      }
     }
   ]
 }
