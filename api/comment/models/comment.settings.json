@@ -18,8 +18,8 @@
       "via": "comments"
     },
     "lesson": {
-      "model": "lesson",
-      "via": "comments"
+      "via": "comments",
+      "model": "lesson"
     }
   }
 }

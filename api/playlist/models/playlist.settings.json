@@ -2,19 +2,21 @@
   "kind": "collectionType",
   "collectionName": "playlists",
   "info": {
-    "name": "playlist"
+    "name": "playlist",
+    "description": ""
   },
   "options": {
     "increments": true,
-    "timestamps": true
+    "timestamps": true,
+    "draftAndPublish": true
   },
   "attributes": {
     "name": {
       "type": "string"
     },
     "lessons": {
-      "via": "playlists",
       "collection": "lesson",
+      "via": "playlists",
       "dominant": true
     },
     "order": {

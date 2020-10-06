@@ -2,11 +2,13 @@
   "kind": "collectionType",
   "collectionName": "exercises",
   "info": {
-    "name": "exercise"
+    "name": "exercise",
+    "description": ""
   },
   "options": {
     "increments": true,
-    "timestamps": true
+    "timestamps": true,
+    "draftAndPublish": true
   },
   "attributes": {
     "title": {
@@ -30,12 +32,8 @@
       "required": false
     },
     "lesson": {
-      "via": "exercises",
-      "model": "lesson"
-    },
-    "published": {
-      "type": "boolean",
-      "default": false
+      "model": "lesson",
+      "via": "exercises"
     }
   }
 }

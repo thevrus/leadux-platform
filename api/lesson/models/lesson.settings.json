@@ -2,18 +2,17 @@
   "kind": "collectionType",
   "collectionName": "lessons",
   "info": {
-    "name": "lesson"
+    "name": "lesson",
+    "description": ""
   },
   "options": {
     "increments": true,
-    "timestamps": true
+    "timestamps": true,
+    "draftAndPublish": true
   },
   "attributes": {
     "title": {
       "type": "string"
-    },
-    "published": {
-      "type": "boolean"
     },
     "videoId": {
       "type": "string"
@@ -22,31 +21,31 @@
       "type": "integer"
     },
     "exercises": {
-      "collection": "exercise",
-      "via": "lesson"
+      "via": "lesson",
+      "collection": "exercise"
     },
     "slug": {
       "type": "uid",
       "targetField": "title"
     },
     "materials": {
-      "collection": "material",
-      "via": "lesson"
+      "via": "lesson",
+      "collection": "material"
     },
     "private": {
       "type": "boolean",
       "default": true
     },
     "playlists": {
-      "collection": "playlist",
-      "via": "lessons"
+      "via": "lessons",
+      "collection": "playlist"
     },
     "videoLength": {
       "type": "integer"
     },
     "comments": {
-      "via": "lesson",
-      "collection": "comment"
+      "collection": "comment",
+      "via": "lesson"
     }
   }
 }

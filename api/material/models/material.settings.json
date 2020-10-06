@@ -2,11 +2,13 @@
   "kind": "collectionType",
   "collectionName": "materials",
   "info": {
-    "name": "material"
+    "name": "material",
+    "description": ""
   },
   "options": {
     "increments": true,
-    "timestamps": true
+    "timestamps": true,
+    "draftAndPublish": true
   },
   "attributes": {
     "title": {
@@ -30,15 +32,11 @@
       "required": false
     },
     "lesson": {
-      "via": "materials",
-      "model": "lesson"
+      "model": "lesson",
+      "via": "materials"
     },
     "link": {
       "type": "string"
-    },
-    "published": {
-      "type": "boolean",
-      "default": false
     }
   }
 }
