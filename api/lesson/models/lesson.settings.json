@@ -45,8 +45,8 @@
       "type": "integer"
     },
     "comments": {
-      "collection": "comment",
-      "via": "lesson"
+      "via": "lesson",
+      "collection": "comment"
     }
   }
 }

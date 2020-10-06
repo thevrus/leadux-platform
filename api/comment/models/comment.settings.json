@@ -13,13 +13,13 @@
       "type": "text"
     },
     "user": {
-      "via": "comments",
       "plugin": "users-permissions",
-      "model": "user"
+      "model": "user",
+      "via": "comments"
     },
     "lesson": {
-      "via": "comments",
-      "model": "lesson"
+      "model": "lesson",
+      "via": "comments"
     }
   }
 }

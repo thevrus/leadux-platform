@@ -54,8 +54,8 @@
       "configurable": false
     },
     "comments": {
-      "collection": "comment",
-      "via": "user"
+      "via": "user",
+      "collection": "comment"
     },
     "avatar": {
       "model": "file",
