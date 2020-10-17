@@ -17,26 +17,14 @@
     "number": {
       "type": "integer"
     },
-    "description": {
-      "type": "richtext"
-    },
-    "media": {
-      "collection": "file",
-      "via": "related",
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos"
-      ],
-      "plugin": "upload",
-      "required": false
-    },
-    "lesson": {
-      "model": "lesson",
-      "via": "materials"
-    },
     "link": {
       "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "material_type": {
+      "model": "material-type"
     }
   }
 }
