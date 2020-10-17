@@ -1,6 +1,7 @@
 'use strict'
 
 const liqpay = strapi.config.liqpay
+const telegram = strapi.config.telegram
 
 module.exports = {
 	async setStudent(ctx) {
@@ -74,6 +75,16 @@ module.exports = {
 
 		await strapi.plugins['users-permissions'].services.user.fetch({
 			id: ctx.request.query.user,
+		})
+
+		telegram.notify({
+			status,
+			currency,
+			amount,
+			description,
+			sender_card_country,
+			transaction_id,
+			user,
 		})
 
 		// TODO
