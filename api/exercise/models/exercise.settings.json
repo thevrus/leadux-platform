@@ -11,14 +11,8 @@
     "draftAndPublish": true
   },
   "attributes": {
-    "title": {
-      "type": "string"
-    },
     "number": {
       "type": "integer"
-    },
-    "description": {
-      "type": "richtext"
     },
     "media": {
       "collection": "file",
@@ -34,6 +28,9 @@
     "lesson": {
       "model": "lesson",
       "via": "exercises"
+    },
+    "description": {
+      "type": "richtext"
     }
   }
 }
