@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "questions",
+  "info": {
+    "name": "question",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "lesson": {
+      "model": "lesson"
+    },
+    "text": {
+      "type": "richtext"
+    },
+    "answers": {
+      "via": "question",
+      "collection": "answer"
+    },
+    "author": {
+      "via": "questions",
+      "plugin": "users-permissions",
+      "model": "user"
+    }
+  }
+}

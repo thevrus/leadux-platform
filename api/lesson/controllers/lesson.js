@@ -2,28 +2,34 @@
 const { parseMultipartData, sanitizeEntity } = require('strapi-utils')
 
 module.exports = {
-	async comment(ctx) {
+	async question(ctx) {
 		const user = ctx.state.user
 
 		if (!user) {
 			return ctx.badRequest(null, [
-				{ messages: [{ id: 'You have sign in first to comment.' }] },
+				{
+					messages: [{ id: 'You have sign in first to ask.' }],
+				},
+			])
+		}
+
+		if (Object.keys(ctx.request.body).length === 0) {
+			return ctx.badRequest(null, [
+				{ messages: [{ id: 'Request body is empty' }] },
 			])
 		}
 
 		let entity
 
-		// TODO
-		// * Support images/files
 		if (ctx.is('multipart')) {
 			const { data, files } = parseMultipartData(ctx)
-			entity = await strapi.services.comment.create(data, { files })
+			entity = await strapi.services.question.create(data, { files })
 		} else {
-			ctx.request.body.user = user
+			ctx.request.body.author = user
 			ctx.request.body.lesson = ctx.params.id
-			entity = await strapi.services.comment.create(ctx.request.body)
+			entity = await strapi.services.question.create(ctx.request.body)
 		}
 
-		return sanitizeEntity(entity, { model: strapi.models.comment })
+		return sanitizeEntity(entity, { model: strapi.models.question })
 	},
 }

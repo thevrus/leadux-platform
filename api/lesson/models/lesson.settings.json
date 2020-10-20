@@ -28,24 +28,16 @@
       "type": "uid",
       "targetField": "title"
     },
-    "materials": {
-      "via": "lesson",
-      "collection": "material"
-    },
     "private": {
       "type": "boolean",
       "default": true
     },
     "playlists": {
-      "via": "lessons",
-      "collection": "playlist"
+      "collection": "playlist",
+      "via": "lessons"
     },
     "videoLength": {
       "type": "integer"
-    },
-    "comments": {
-      "collection": "comment",
-      "via": "lesson"
     }
   }
 }

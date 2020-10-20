@@ -6,7 +6,8 @@
     "description": ""
   },
   "options": {
-    "timestamps": true
+    "timestamps": true,
+    "draftAndPublish": false
   },
   "attributes": {
     "username": {
@@ -53,10 +54,6 @@
       "plugin": "users-permissions",
       "configurable": false
     },
-    "comments": {
-      "via": "user",
-      "collection": "comment"
-    },
     "avatar": {
       "model": "file",
       "via": "related",
@@ -67,11 +64,22 @@
       "required": false
     },
     "plan": {
+      "private": true,
       "model": "plan"
     },
     "payments": {
-      "via": "user",
+      "private": true,
       "collection": "payment"
+    },
+    "questions": {
+      "private": true,
+      "collection": "question",
+      "via": "author"
+    },
+    "answers": {
+      "private": true,
+      "collection": "answer",
+      "via": "author"
     }
   }
 }

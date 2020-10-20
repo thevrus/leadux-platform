@@ -15,8 +15,8 @@
       "type": "string"
     },
     "lessons": {
-      "collection": "lesson",
       "via": "playlists",
+      "collection": "lesson",
       "dominant": true
     },
     "order": {
