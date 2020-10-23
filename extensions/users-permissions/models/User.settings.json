@@ -54,15 +54,6 @@
       "plugin": "users-permissions",
       "configurable": false
     },
-    "avatar": {
-      "model": "file",
-      "via": "related",
-      "allowedTypes": [
-        "images"
-      ],
-      "plugin": "upload",
-      "required": false
-    },
     "plan": {
       "private": true,
       "model": "plan"
@@ -80,6 +71,20 @@
       "private": true,
       "collection": "answer",
       "via": "author"
+    },
+    "avatar": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
     }
+  },
+  "confirmationToken": {
+    "type": "string",
+    "configurable": false,
+    "private": true
   }
 }
