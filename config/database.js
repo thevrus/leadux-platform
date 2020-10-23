@@ -14,20 +14,22 @@ const devConnection = function (env) {
 }
 
 const prodConnection = function (env) {
+	const parse = require('pg-connection-string').parse
+	const config = parse(process.env.DATABASE_URL)
+
 	return {
 		default: {
-			connector: 'mongoose',
+			connector: 'bookshelf',
 			settings: {
-				host: env('DATABASE_HOST'),
-				srv: env.bool('DATABASE_SRV'),
-				port: env.int('DATABASE_PORT'),
-				database: env('DATABASE_NAME'),
-				username: env('DATABASE_USERNAME'),
-				password: env('DATABASE_PASSWORD'),
+				client: 'postgres',
+				host: config.host,
+				port: config.port,
+				database: config.database,
+				username: config.user,
+				password: config.password,
 			},
 			options: {
-				authenticationDatabase: env('AUTHENTICATION_DATABASE', null),
-				ssl: env.bool('DATABASE_SSL', true),
+				ssl: false,
 			},
 		},
 	}
