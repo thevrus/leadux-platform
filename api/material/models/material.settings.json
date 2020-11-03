@@ -14,9 +14,6 @@
     "title": {
       "type": "string"
     },
-    "number": {
-      "type": "integer"
-    },
     "link": {
       "type": "string"
     },
@@ -24,7 +21,19 @@
       "type": "text"
     },
     "material_type": {
-      "model": "material-type"
+      "model": "material-type",
+      "via": "materials"
+    },
+    "cover": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
     }
   }
 }

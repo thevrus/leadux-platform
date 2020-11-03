@@ -95,44 +95,21 @@ module.exports = {
 	async getInvoice(ctx) {
 		const { user } = ctx.state
 
-		if (!user) {
-			return ctx.badRequest(null, [
-				{ messages: [{ id: 'You have first sign in to buy plans.' }] },
-			])
-		}
-
-		const { country_name } = ctx.request.body
-
 		const allPlans = await strapi.services.plan.find({})
 		// const userPlan = await strapi.query('plan').findOne({ id: user.plan })
 
 		ctx.body = allPlans.map(plan => {
-			if (user.plan !== plan.id) {
-				const result_url = `${liqpay.host_url}users-permissions/setstudent?user=${user.id}&plan=${plan.id}`
+			let response
 
-				let amount = null
-				let currency = null
-
-				switch (country_name) {
-					case 'RUSSIA':
-						amount = plan.rub
-						currency = 'RUB'
-						break
-
-					case 'UKRAINE':
-						amount = plan.uah
-						currency = 'UAH'
-						break
-
-					default:
-						amount = plan.usd
-						currency = 'USD'
-				}
+			if (user) {
+				const result_url = user
+					? `${liqpay.host_url}users-permissions/setstudent?user=${user.id}&plan=${plan.id}`
+					: null
 
 				const payment = {
 					action: 'pay',
-					amount,
-					currency,
+					amount: plan.usd,
+					currency: 'USD',
 					public_key: liqpay.public_key,
 					description: plan.description,
 					result_url,
@@ -141,15 +118,26 @@ module.exports = {
 
 				const { data, signature } = liqpay.data_signature(payment)
 
-				return {
+				response = {
 					name: plan.name,
 					description: plan.description,
-					currency,
-					amount,
+					currency: 'USD',
+					amount: plan.usd,
+					pros: plan.pros,
 					data,
 					signature,
 				}
+			} else {
+				response = {
+					name: plan.name,
+					description: plan.description,
+					currency: 'USD',
+					amount: plan.usd,
+					pros: plan.pros,
+				}
 			}
+
+			return response
 		})
 	},
 }

@@ -1,8 +1,8 @@
 {
   "kind": "collectionType",
-  "collectionName": "material_types",
+  "collectionName": "pages",
   "info": {
-    "name": "material_type",
+    "name": "page",
     "description": ""
   },
   "options": {
@@ -14,9 +14,15 @@
     "title": {
       "type": "string"
     },
-    "materials": {
-      "via": "material_type",
-      "collection": "material"
+    "description": {
+      "type": "string"
+    },
+    "text": {
+      "type": "richtext"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
     }
   }
 }

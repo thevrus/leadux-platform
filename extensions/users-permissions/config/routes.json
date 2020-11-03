@@ -9,7 +9,7 @@
       }
     },
     {
-      "method": "POST",
+      "method": "GET",
       "path": "/invoice",
       "handler": "UsersPermissions.getInvoice",
       "config": {

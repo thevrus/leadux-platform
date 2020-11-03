@@ -11,13 +11,15 @@ module.exports = {
 			entities = await strapi.services.question.find(ctx.query)
 		}
 
+		entities = entities.filter(answer => answer.author !== null)
+
 		entities = await Promise.all(
 			entities.map(async entity => {
 				entity.answers = await Promise.all(
 					entity.answers.map(async answer => {
 						answer.author = await strapi
 							.query('user', 'users-permissions')
-							.findOne({ id: answer.author.id })
+							.findOne({ id: answer.author })
 
 						return answer
 					})
