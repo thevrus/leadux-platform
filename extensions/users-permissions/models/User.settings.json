@@ -58,10 +58,6 @@
       "private": true,
       "model": "plan"
     },
-    "payments": {
-      "private": true,
-      "collection": "payment"
-    },
     "questions": {
       "private": true,
       "collection": "question",
@@ -80,11 +76,10 @@
       ],
       "plugin": "upload",
       "required": false
+    },
+    "payments": {
+      "collection": "payment",
+      "via": "user"
     }
-  },
-  "confirmationToken": {
-    "type": "string",
-    "configurable": false,
-    "private": true
   }
 }

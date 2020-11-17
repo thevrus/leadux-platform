@@ -32,6 +32,11 @@
     },
     "amount": {
       "type": "string"
+    },
+    "user": {
+      "via": "payments",
+      "plugin": "users-permissions",
+      "model": "user"
     }
   }
 }
