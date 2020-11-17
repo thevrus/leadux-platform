@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "plans",
+  "info": {
+    "name": "plan"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "string",
+      "required": true
+    },
+    "usd": {
+      "type": "decimal",
+      "required": true,
+      "default": 0
+    },
+    "uah": {
+      "type": "decimal",
+      "required": true,
+      "default": 0
+    },
+    "rub": {
+      "type": "decimal",
+      "default": 0,
+      "required": true
+    },
+    "role": {
+      "plugin": "users-permissions",
+      "model": "role",
+      "via": "plan"
+    },
+    "pros": {
+      "type": "richtext"
+    }
+  }
+}

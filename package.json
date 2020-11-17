@@ -1,8 +1,8 @@
 {
-  "name": "strapi",
+  "name": "leadux-platform",
   "private": true,
   "version": "0.1.0",
-  "description": "A Strapi application",
+  "description": "",
   "scripts": {
     "develop": "strapi develop",
     "start": "strapi start",
@@ -11,23 +11,25 @@
   },
   "devDependencies": {},
   "dependencies": {
-    "strapi": "3.1.4",
-    "strapi-admin": "3.1.4",
-    "strapi-utils": "3.1.4",
-    "strapi-plugin-content-type-builder": "3.1.4",
-    "strapi-plugin-content-manager": "3.1.4",
-    "strapi-plugin-users-permissions": "3.1.4",
-    "strapi-plugin-email": "3.1.4",
-    "strapi-plugin-upload": "3.1.4",
-    "strapi-connector-mongoose": "3.1.4"
-  },
-  "author": {
-    "name": "A Strapi developer"
+    "knex": "<0.20.0",
+    "node-fetch": "^2.6.1",
+    "pg": "^8.5.1",
+    "pg-connection-string": "^2.4.0",
+    "sqlite3": "latest",
+    "strapi": "^3.3.3",
+    "strapi-admin": "^3.3.3",
+    "strapi-connector-bookshelf": "^3.3.3",
+    "strapi-plugin-content-manager": "^3.3.3",
+    "strapi-plugin-content-type-builder": "^3.3.3",
+    "strapi-plugin-email": "^3.3.3",
+    "strapi-plugin-upload": "^3.3.3",
+    "strapi-plugin-users-permissions": "^3.3.3",
+    "strapi-utils": "^3.3.3"
   },
   "strapi": {},
   "engines": {
-    "node": ">=10.0.0",
-    "npm": ">=6.0.0"
+    "node": "15.x",
+    "npm": "7.x"
   },
   "license": "MIT"
 }

@@ -2,48 +2,48 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/materials",
-      "handler": "materials.find",
+      "path": "/answers",
+      "handler": "answer.find",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/materials/count",
-      "handler": "materials.count",
+      "path": "/answers/count",
+      "handler": "answer.count",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/materials/:id",
-      "handler": "materials.findOne",
+      "path": "/answers/:id",
+      "handler": "answer.findOne",
       "config": {
         "policies": []
       }
     },
     {
       "method": "POST",
-      "path": "/materials",
-      "handler": "materials.create",
+      "path": "/answers",
+      "handler": "answer.create",
       "config": {
         "policies": []
       }
     },
     {
       "method": "PUT",
-      "path": "/materials/:id",
-      "handler": "materials.update",
+      "path": "/answers/:id",
+      "handler": "answer.update",
       "config": {
         "policies": []
       }
     },
     {
       "method": "DELETE",
-      "path": "/materials/:id",
-      "handler": "materials.delete",
+      "path": "/answers/:id",
+      "handler": "answer.delete",
       "config": {
         "policies": []
       }

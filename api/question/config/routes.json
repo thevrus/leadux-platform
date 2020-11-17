@@ -2,56 +2,56 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/lessons",
-      "handler": "lesson.find",
+      "path": "/questions",
+      "handler": "question.find",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/lessons/count",
-      "handler": "lesson.count",
+      "path": "/questions/count",
+      "handler": "question.count",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/lessons/:id",
-      "handler": "lesson.findOne",
+      "path": "/questions/:id",
+      "handler": "question.findOne",
       "config": {
         "policies": []
       }
     },
     {
       "method": "POST",
-      "path": "/lessons",
-      "handler": "lesson.create",
+      "path": "/questions",
+      "handler": "question.create",
       "config": {
         "policies": []
       }
     },
     {
       "method": "PUT",
-      "path": "/lessons/:id",
-      "handler": "lesson.update",
+      "path": "/questions/:id",
+      "handler": "question.update",
       "config": {
         "policies": []
       }
     },
     {
       "method": "DELETE",
-      "path": "/lessons/:id",
-      "handler": "lesson.delete",
+      "path": "/questions/:id",
+      "handler": "question.delete",
       "config": {
         "policies": []
       }
     },
     {
       "method": "POST",
-      "path": "/lessons/:id/question",
-      "handler": "lesson.question",
+      "path": "/questions/:id/answer",
+      "handler": "question.answer",
       "config": {
         "policies": []
       }

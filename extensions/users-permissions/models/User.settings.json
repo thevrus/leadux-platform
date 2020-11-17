@@ -6,7 +6,8 @@
     "description": ""
   },
   "options": {
-    "timestamps": true
+    "timestamps": true,
+    "draftAndPublish": false
   },
   "attributes": {
     "username": {
@@ -53,9 +54,32 @@
       "plugin": "users-permissions",
       "configurable": false
     },
-    "PaymentService": {
-      "type": "string",
-      "default": "null"
+    "plan": {
+      "private": true,
+      "model": "plan"
+    },
+    "questions": {
+      "private": true,
+      "collection": "question",
+      "via": "author"
+    },
+    "answers": {
+      "private": true,
+      "collection": "answer",
+      "via": "author"
+    },
+    "avatar": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "payments": {
+      "collection": "payment",
+      "via": "user"
     }
   }
 }

@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "playlists",
+  "info": {
+    "name": "playlist",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "lessons": {
+      "via": "playlists",
+      "collection": "lesson",
+      "dominant": true
+    },
+    "order": {
+      "type": "integer"
+    }
+  }
+}

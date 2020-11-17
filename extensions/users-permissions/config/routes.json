@@ -1,0 +1,20 @@
+{
+  "routes": [
+    {
+      "method": "POST",
+      "path": "/setstudent",
+      "handler": "UsersPermissions.setStudent",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/invoice",
+      "handler": "UsersPermissions.getInvoice",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
