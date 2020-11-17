@@ -9,7 +9,12 @@ const sanitizeLesson = (lesson, ctx) => {
 		model: strapi.models.lesson,
 	})
 
-	if (role !== 'student' && role !== 'advanced' && sanitizedEntity.private) {
+	if (
+		role !== 'student' &&
+		role !== 'author' &&
+		role !== 'advanced' &&
+		sanitizedEntity.private
+	) {
 		delete sanitizedEntity.videoId
 	}
 
