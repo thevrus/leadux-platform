@@ -13,18 +13,18 @@
   "dependencies": {
     "knex": "<0.20.0",
     "node-fetch": "^2.6.1",
-    "pg": "^8.5.0",
+    "pg": "^8.5.1",
     "pg-connection-string": "^2.4.0",
     "sqlite3": "latest",
-    "strapi": "^3.3.2",
-    "strapi-admin": "^3.3.2",
-    "strapi-connector-bookshelf": "^3.3.2",
-    "strapi-plugin-content-manager": "^3.3.2",
-    "strapi-plugin-content-type-builder": "^3.3.2",
-    "strapi-plugin-email": "^3.3.2",
-    "strapi-plugin-upload": "^3.3.2",
-    "strapi-plugin-users-permissions": "^3.3.2",
-    "strapi-utils": "^3.3.2"
+    "strapi": "^3.3.3",
+    "strapi-admin": "^3.3.3",
+    "strapi-connector-bookshelf": "^3.3.3",
+    "strapi-plugin-content-manager": "^3.3.3",
+    "strapi-plugin-content-type-builder": "^3.3.3",
+    "strapi-plugin-email": "^3.3.3",
+    "strapi-plugin-upload": "^3.3.3",
+    "strapi-plugin-users-permissions": "^3.3.3",
+    "strapi-utils": "^3.3.3"
   },
   "strapi": {},
   "engines": {
