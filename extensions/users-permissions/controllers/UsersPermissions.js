@@ -94,50 +94,69 @@ module.exports = {
 
 	async getInvoice(ctx) {
 		const { user } = ctx.state
+		const user_plan =
+			user &&
+			(await strapi.query('plan').findOne({ id: user.plan })).role.type
 
-		const allPlans = await strapi.services.plan.find({})
-		// const userPlan = await strapi.query('plan').findOne({ id: user.plan })
+		const promocode = undefined || ctx.request.query.promocode
+		let plans = await strapi.services.plan.find({})
 
-		ctx.body = allPlans.map(plan => {
-			let response
+		plans = plans
+			.map(plan => {
+				if (!promocode || !plan.promotion) return plan
 
-			if (user) {
-				const result_url = user
-					? `${liqpay.host_url}users-permissions/setstudent?user=${user.id}&plan=${plan.id}`
-					: null
+				if (promocode.toLowerCase() == plan.code.toLowerCase()) {
+					// Price before
+					plan.before_usd = plan.usd
+					plan.before_rub = plan.rub
+					plan.before_uah = plan.uah
 
-				const payment = {
-					action: 'pay',
-					amount: plan.usd,
-					currency: 'USD',
-					public_key: liqpay.public_key,
-					description: plan.description,
-					result_url,
-					version: '3',
+					// Price after
+					plan.usd = plan.usd_promo
+					plan.rub = plan.rub_promo
+					plan.uah = plan.uah_promo
+					plan.promo_applied = plan.code
 				}
 
-				const { data, signature } = liqpay.data_signature(payment)
-
-				response = {
+				return plan
+			})
+			.map(plan => {
+				const response = {
 					name: plan.name,
+					role: plan.role.type,
 					description: plan.description,
 					currency: 'USD',
 					amount: plan.usd,
 					pros: plan.pros,
-					data,
-					signature,
+					promo_applied: plan.promo_applied || null,
+					amount_before: plan.before_usd || null,
+					user_plan,
 				}
-			} else {
-				response = {
-					name: plan.name,
-					description: plan.description,
-					currency: 'USD',
-					amount: plan.usd,
-					pros: plan.pros,
-				}
-			}
 
-			return response
-		})
+				if (user) {
+					const result_url = user
+						? `${liqpay.host_url}users-permissions/setstudent?user=${user.id}&plan=${plan.id}`
+						: null
+
+					const payment = {
+						action: 'pay',
+						amount: plan.usd,
+						currency: 'USD',
+						public_key: liqpay.public_key,
+						description: plan.description,
+						result_url,
+						version: '3',
+					}
+
+					const { data, signature } = liqpay.data_signature(payment)
+
+					response['data'] = data
+					response['signature'] = signature
+				}
+
+				return response
+			})
+
+		ctx.body = plans
 	},
 }
