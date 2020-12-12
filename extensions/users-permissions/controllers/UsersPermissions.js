@@ -96,6 +96,7 @@ module.exports = {
 		const { user } = ctx.state
 		const user_plan =
 			user &&
+			user.plan &&
 			(await strapi.query('plan').findOne({ id: user.plan })).role.type
 
 		const promocode = undefined || ctx.request.query.promocode
