@@ -9,7 +9,6 @@
     "build": "strapi build",
     "strapi": "strapi"
   },
-  "devDependencies": {},
   "dependencies": {
     "knex": "0.21.18",
     "node-fetch": "^2.6.1",
@@ -25,6 +24,7 @@
     "strapi-plugin-i18n": "3.6.2",
     "strapi-plugin-upload": "3.6.2",
     "strapi-plugin-users-permissions": "3.6.2",
+    "strapi-provider-upload-cloudinary": "^3.6.2",
     "strapi-utils": "3.6.2"
   },
   "strapi": {},
